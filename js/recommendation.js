@@ -27,7 +27,7 @@ function recommendMajor() {
 
     (async () => {
         let req = await fetch(
-            'fuzzy-c-mean-api-production.up.railway.app/get-recommend',
+            'https://fuzzy-c-mean-api-production.up.railway.app/get-recommend',
             {
                 'method': 'POST',
                 'headers': {
