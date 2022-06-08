@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- Bootstrap CSS v5.0.2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./assets/modal.css" />
+  <link rel="stylesheet" href="./assets/tuvanstyle.css" />
+</head>
+
+<body id="body">
+  <div class="container-fuild">
+    <div class="row" id="content">
+      <div class="col-9 mx-auto">
+        <div class="title mt-4 mb-4">
+          <h1 class="text-center text-primary fw-bold">Tư vấn chọn ngành</h1>
+        </div>
+        <div class="formThongtinSV">
+          <form id="formQLSV">
+            <div class="row">
+              <div class="col-3 form-group mb-3">
+                <label for="" class="label mb-2 text-primary fw-bold">Mã Sinh Viên :
+                </label>
+                <input type="text" class="form-control" id="txtMaSV" />
+                <span id="spanMaSV" class="text-danger"></span>
+              </div>
+              <div class="col-3 form-group">
+                <label for="" class="label mb-2 text-primary fw-bold">Tên Sinh Viên :
+                </label>
+                <input type="text" class="form-control" id="txtTenSV" />
+                <span id="spanTenSV" class="text-danger"></span>
+              </div>
+              <div class="col-3 form-group">
+                <label for="" class="label mb-2 text-primary fw-bold">Khóa học:
+                </label>
+                <select name="" id="khSV" class="form-select">
+                  <option>Chọn khóa học</option>
+                  <option>Khóa 09</option>
+                  <option>Khóa 10</option>
+                </select>
+                <span id="spanKhoaHoc" class="text-danger"></span>
+              </div>
+              <div class="col-3 button-right">
+                <button type="button" id="tuvan" class="btn btn-primary btntuvan" data-bs-toggle="modal"
+                  data-bs-target="#myModal" onclick="display()">
+                  Tư vấn chọn ngành
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="container mt-3">
+        <div class="card">
+          <!-- Header -->
+          <div class="card-header myCardHeader">
+            <div class="row">
+              <div class="col-md-6">
+                <h3 class="text-left text-primary font-weight-bold">
+                  Danh sách sinh viên
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Body -->
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Tên sinh viên" id="searchName" />
+                  <div class="input-group-prepend">
+                    <button class="input-group-text" id="btnTimNV" onclick="searchNV()">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <table class="table table-bordered table-hover myTable">
+              <thead class="text-primary">
+                <tr>
+                  <th class="nowrap">
+                    <span class="mr-1">MSSV</span>
+                  </th>
+                  <th>Họ và tên</th>
+                  <th>Giới tính</th>
+                  <th>Lớp học</th>
+                  <th>Khóa học</th>
+                  <th>Bậc đào tạo</th>
+                  <th>Chuyên ngành</th>
+                  <th colspan="2"><em class="fa fa-cog"></em></th>
+                </tr>
+              </thead>
+              <tbody id="tableDanhSach"></tbody>
+            </table>
+            <div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Chuyên ngành</th>
+                    <th scope="col">Tỉ lệ được gợi ý</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Khoa học phân tích dữ liệu</td>
+                    <td id="td-khptdl"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Hệ thống thông tin</td>
+                    <td id="td-httt"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Công nghệ phần mềm</td>
+                    <td id="td-cnpm"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>Mạng máy tính</td>
+                    <td id="td-mmt"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="card-footer myCardFooter">
+            <nav>
+              <ul class="pagination justify-content-center" id="ulPhanTrang"></ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="myModal" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <header class="head-form mb-0">
+            <h2 class="header-title fw-bold">Nhập điểm</h2>
+          </header>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form">
+            <div class="row">
+              <div class="col-6 form-group">
+                <label for="" class="label mb-2">Điểm <b>Nhập môn lập trình :</b>
+                </label>
+                <input type="text" class="form-control" id="txtDiemNhapMonLapTrinh" />
+                <span id="spanNhapmonlaptrinh" class="text-danger"></span>
+              </div>
+              <div class="col-6 form-group">
+                <label for="" class="label mb-2">Điểm <b>Toán rời rạc :</b>
+                </label>
+                <input type="text" class="form-control" id="txtDiemToanRoiRac" />
+                <span id="spanToanroirac" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6 form-group">
+                <label for="" class="label mb-2">Điểm<b> Khai thác dữ liệu :</b>
+                </label>
+                <input type="text" class="form-control" id="txtDiemKhaiThacDuLieu" />
+                <span id="spanHequantri" class="text-danger"></span>
+              </div>
+              <div class="col-6 form-group">
+                <label for="" class="label mb-2">Điểm <b>Cơ sở dữ liệu :</b>
+                </label>
+                <input type="text" class="form-control" id="txtDiemCSDL" />
+                <span id="spanCautrucDL" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6 form-group">
+                <label for="" class="label mb-2">Điểm <b>Hệ quản trị CSDL :</b>
+                </label>
+                <input type="text" class="form-control" id="txtDiemHeQuanTriCSDL" />
+                <span id="spanHequantri" class="text-danger"></span>
+              </div>
+              <div class="col-6 form-group">
+                <label for="" class="label mb-2">Điểm <b>Cấu trúc DL và GT :</b>
+                </label>
+                <input type="text" class="form-control" id="txtDiemCTDL-GT" />
+                <span id="spanCautrucDL" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6 form-group">
+                <label for="" class="label mb-2">Điểm <b>LT hướng đối tượng</b> :
+                </label>
+                <input type="text" class="form-control" id="txtDiemOOP" />
+                <span id="spanLaptrinhhuongdoituong" class="text-danger"></span>
+              </div>
+              <div class="col-6 form-group">
+                <label for="" class="label mb-2">Điểm <b>Kiến trúc máy tính :</b>
+                </label>
+                <input type="text" class="form-control" id="txtDiemKienTrucMayTinh" />
+                <span id="spanKientrucmaytinh" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6 form-group">
+                <label for="" class="label mb-2">Điểm <b>Mạng máy tính :</b>
+                </label>
+                <input type="text" class="form-control center-block" id="txtDiemMangMayTinh" />
+                <span id="spanMangmaytinh" class="text-danger"></span>
+              </div>
+              <div class="col-6 form-group">
+                <label for="" class="label mb-2">Điểm <b>Hệ điều hành :</b>
+                </label>
+                <input type="text" class="form-control center-block" id="txtDiemHeDieuHanh" />
+                <span id="spanMangmaytinh" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="btnRecommend">Tư Vấn</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <!-- Bootstrap JavaScript Libraries -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+
+  <script src="./js/popper.min.js"></script>
+
+  <script src="./js/validation.js"></script>
+  <script src="./js/recommendation.js"></script>
+</body>
+
+</html>
