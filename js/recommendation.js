@@ -44,6 +44,7 @@ function recommendMajor() {
         document.querySelector("#td-cnpm").innerHTML = res.cnpm + "%";
         document.querySelector("#td-mmt").innerHTML = res.mmt + "%";
     })();
+    $('#myModal').modal('hide');
     return false;
 }
 
