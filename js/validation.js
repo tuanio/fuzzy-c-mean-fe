@@ -5,7 +5,7 @@ function display() {
 
   var isValid = validation();
   while (!isValid) {
-    alert("Vui lòng nhập vào các giá trị");
+    // alert("Vui lòng nhập vào các giá trị");
     hidenModal();
    return;
   }
@@ -55,5 +55,6 @@ function validation() {
 }
 function hidenModal(){  
   $('#myModal').modal('hide');
-
 }
+
+// document.querySelector("#btnRecommend").addEventListener("click", hidenModal);
