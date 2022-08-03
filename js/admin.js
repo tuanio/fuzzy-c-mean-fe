@@ -6,7 +6,7 @@ function handleLogin() {
     let password = document.querySelector("#password").value;
 
     (async () => {
-        let req = await fetch(`https://fuzzy-c-mean-api-production.up.railway.app/api/authorize/${username}/${password}`);
+        let req = await fetch(`https://fuzzy-c-mean-api-production-1.up.railway.app/api/authorize/${username}/${password}`);
         let res = await req.json();
 
         if (res.is_okay) {
